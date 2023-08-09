@@ -34,12 +34,12 @@ const logToDos = () => {
 const newLi = () => {};
 
 const populateToDos = () => {
+ClearOldStuff()
   const orderedList = document.getElementById("todo-list");
   console.log("orderedList:", orderedList);
 
   for (let IndexArray = 0; IndexArray < arrayOfToDos.length; IndexArray++) {
     console.log("index:", IndexArray);
- 
     const newLi = document.createElement("li");
     const newContent = document.createTextNode(arrayOfToDos[IndexArray].userId);
     newLi.appendChild(newContent);
@@ -57,5 +57,62 @@ const populateToDos = () => {
 const userIdList = arrayOfToDos.filter(element => {
   return element.userId === 14
 })
-console.log(userIdList)
+
+let inputValue
+
+let UserIDs = (element) => {
+  inputValue = parseInt(element.value)
+}
+
+const ClearOldStuff = () => {
+  const ol = document.getElementById("todo-list")
+  ol.innerHTML=null
+}
+
+const filterToDos = () => {
+ ClearOldStuff()
+  const filtered = arrayOfToDos.filter((ToDos) => {
+    return ToDos.userId === inputValue
+  })
+  const orderedList = document.getElementById("todo-list");
+  for (let IndexArray = 0; IndexArray < filtered.length; IndexArray++) {
+    const newLi = document.createElement("li");
+    const newContent = document.createTextNode(filtered[IndexArray].userId);
+    newLi.appendChild(newContent);
+    orderedList.appendChild(newLi);
+  }
+}
+
+const completedToDos = () => {
+  ClearOldStuff()
+  const filtered = ReusableFilter(true) 
+  const orderedList = document.getElementById("todo-list");
+  for (let IndexArray = 0; IndexArray < filtered.length; IndexArray++) {
+    const newLi = document.createElement("li");
+    const newContent = document.createTextNode(filtered[IndexArray].userId);
+    newLi.appendChild(newContent);
+    orderedList.appendChild(newLi);
+  }
+}
+
+const NotCompletedToDos = () => {
+  ClearOldStuff()
+  const filtered = ReusableFilter(false) 
+  const orderedList = document.getElementById("todo-list");
+  for (let IndexArray = 0; IndexArray < filtered.length; IndexArray++) {
+    const newLi = document.createElement("li");
+    const newContent = document.createTextNode(filtered[IndexArray].userId);
+    newLi.appendChild(newContent);
+    orderedList.appendChild(newLi);
+  }
+
+}
+
+const ReusableFilter = (value) => {
+    return arrayOfToDos.filter((ToDos) => {
+    return ToDos.completed === value
+  })
+}
+
+
 
