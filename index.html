@@ -12,6 +12,12 @@
   <button onclick="fetchToDos()">Fetch To-Dos</button>
   <button onclick="logToDos()">Log To-Dos</button>
   <button onclick="populateToDos()">Populate To-Dos</button>
+  <input onkeyup="UserIDs(this)" type ="number" min="1" max="10"> 
+  <button onclick="filterToDos()">Filter ToDos</button>
+  <button onclick="completedToDos()">Completed</button>
+  <button onclick="NotCompletedToDos()">Not Completed</button>
+
+
   <ol id="todo-list">
   <!-- LIs will go here -->
 
